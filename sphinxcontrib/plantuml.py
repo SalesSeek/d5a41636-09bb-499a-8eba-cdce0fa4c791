@@ -86,7 +86,7 @@ def render_plantuml(self, node, fileformat):
                 raise
             raise PlantUmlError('plantuml command %r cannot be run'
                                 % self.builder.config.plantuml)
-        serr = p.communicate(node['uml'].encode('utf-8'))[1]
+        serr = p.communicate(node['uml'].encode('utf-8'))[1].decode('utf-8')
         if p.returncode != 0:
             raise PlantUmlError('error while running plantuml\n\n' + serr)
         return refname, outfname
